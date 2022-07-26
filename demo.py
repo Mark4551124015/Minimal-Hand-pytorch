@@ -14,7 +14,8 @@ _mano_root = 'mano/models'
 
 module = detnet().to(device)
 print('load model start')
-check_point = torch.load('new_check_point/ckp_detnet_83.pth', map_location=device)
+check_point = torch.load('new_check_point/bmc_ckp.pth', map_location=device)
+# check_point = torch.load('checkpoints/ckp_detnet_106.pth', map_location=device)
 model_state = module.state_dict()
 state = {}
 for k, v in check_point.items():
@@ -39,8 +40,12 @@ print('start opencv')
 point_fliter = smoother.OneEuroFilter(4.0, 0.0)
 mesh_fliter = smoother.OneEuroFilter(4.0, 0.0)
 shape_fliter = smoother.OneEuroFilter(4.0, 0.0)
-cap = cv2.VideoCapture(0)
+# video = 0
+# video = "hand test.mp4"
+video = "http://admin:admin@10.24.48.15:8081/"
+cap = cv2.VideoCapture(video)
 print('opencv finished')
+
 flag = 1
 plt.ion()
 f = plt.figure()
